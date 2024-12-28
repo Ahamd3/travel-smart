@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Travil Smart</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hero {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .travel-smart-text {
+            color: white;
+            font-size: 24px;
+            animation: changeColor 3s infinite, rotateCircle 5s infinite linear;
+        }
+
+        .circle {
+            display: inline-block;
+            background-color: #00aaff;
+            padding: 25px;
+            border-radius: 50%;
+            border: 3px solid #ffffff;
+            animation: rotateCircle 5s infinite linear;
+            margin-top: 20px;
+        }
+
+        @keyframes changeColor {
+            0% { color: white; }
+            50% { color: black; }
+            100% { color: #00aaff; }
+        }
+
+        @keyframes rotateCircle {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .circle-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .booking-section.hidden {
+            display: none;
+        }
+
+        .confirmation-message {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            text-align: center;
+            padding: 20px;
+            background-color: #f44336;
+            color: white;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Travel Smart</div>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showSection('flights')">حجز الطيران</a></li>
+                <li><a href="#" onclick="showSection('buses')">حجز الأتوبيسات</a></li>
+                <li><a href="#" onclick="showSection('trains')">حجز القطارات</a></li>
+                <li><a href="#" onclick="showSection('tours')">حجز الجولات السياحيه </a></li>
+                <li><a href="#" onclick="showSection('cars')">حجز السيارات</a></li>
+                <li><a href="#" onclick="showSection('hotels')">حجز الفنادق</a></li>
+                <li><a href="#" onclick="showSection('private-transfers')">حجز رحلات Vip</a></li>
+                <li><a href="#" onclick="showSection('travel-insurance')">تأمين السفر</a></li>
+                <li><a href="#" onclick="showSection('activities')">حجزالرحلات البحرية </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>حجوزات السفر والرحلات بكل سهولة</h1>
+            <p class="dynamic-text">أفضل العروض لجميع وجهتك</p>
+        </section>
+
+        <div class="circle-container">
+            <div class="circle">
+                <span class="travel-smart-text">Travel Smart</span>
+            </div>
+        </div>
+
+        <section id="flights" class="booking-section hidden">
+            <h2>حجز الطيران</h2>
+            <form id="flight-form">
+                <input type="text" id="flight-from" placeholder="من">
+                <input type="text" id="flight-to" placeholder="إلى">
+                <input type="date" id="flight-date">
+                <button type="submit">حجز</button>
+            </form>
+            <div id="flight-form-message"></div>
+            <button onclick="backToBooking()">الرجوع لباقي الحجوزات</button>
+        </section>
+
+        <section id="buses" class="booking-section hidden">
+            <h2>حجز الأتوبيسات</h2>
+            <form id="bus-form">
+                <input type="text" id="bus-from" placeholder="من">
+                <input type="text" id="bus-to" placeholder="إلى">
+                <input type="date" id="bus-date">
+                <button type="submit">حجز</button>
+            </form>
+            <div id="bus-form-message"></div>
+            <button onclick="backToBooking()">الرجوع لباقي الحجوزات</button>
+        </section>
+
+        <section id="trains" class="booking-section hidden">
+            <h2>حجز القطارات</h2>
+            <form id="train-form">
+                <input type="text" id="train-from" placeholder="من">
+                <input type="text" id="train-to" placeholder="إلى">
+                <input type="date" id="train-date">
+                <button type="submit">حجز</button>
+            </form>
+            <div id="train-form-message"></div>
+            <button onclick="backToBooking()">الرجوع لباقي الحجوزات</button>
+        </section>
+
+        <section id="hotels" class="booking-section hidden">
+            <h2>حجز الفنادق</h2>
+            <form id="hotel-form">
+                <input type="text" id="hotel-location" placeholder="المدينة">
+                <input type="date" id="hotel-check-in" placeholder="تاريخ الوصول">
+                <input type="date" id="hotel-check-out" placeholder="تاريخ المغادرة">
+                <button type="submit">حجز</button>
+            </form>
+            <div id="hotel-form-message"></div>
+            <button onclick="backToBooking()">الرجوع لباقي الحجوزات</button>
+        </section>
+
+        <section id="cars" class="booking-section hidden">
+            <h2>حجز السيارات</h2>
+            <form id="car-form">
+                <input type="text" id="car-pickup" placeholder="مكان الاستلام">
+                <input type="date" id="car-pickup-date" placeholder="تاريخ الاستلام">
+                <input type="date" id="car-dropoff-date" placeholder="تاريخ التسليم">
+                <button type="submit">حجز</button>
+            </form>
+            <div id="car-form-message"></div>
+            <button onclick="backToBooking()">الرجوع لباقي الحجوزات</button>
+        </section>
+
+        <section id="tours" class="booking-section hidden">
+            <h2>الجولات السياحية</h2>
+            <form id="tour-form">
+                <input type="text" id="tour-location" placeholder="الوجهة">
+                <input type="date" id="tour-date" placeholder="تاريخ الجولة">
+                <button type="submit">حجز</button>
+            </form>
+            <div id="tour-form-message"></div>
+            <button onclick="backToBooking()">الرجوع لباقي الحجوزات</button>
+        </section>
+
+        <section id="private-transfers" class="booking-section hidden">
+            <h2>النقل الخاص</h2>
+            <form id="transfer-form">
+                <input type="text" id="transfer-from" placeholder="من">
+                <input type="text" id="transfer-to" placeholder="إلى">
+                <input type="date" id="transfer-date">
+                <button type="submit">حجز</button>
+            </form>
+            <div id="transfer-form-message"></div>
+            <button onclick="backToBooking()">الرجوع لباقي الحجوزات</button>
+        </section>
+
+        <section id="travel-insurance" class="booking-section hidden">
+            <h2>تأمين السفر</h2>
+            <form id="insurance-form">
+                <input type="text" id="insurance-from" placeholder="الاسم كامل">
+                <input type="text" id="insurance-to" placeholder="رقم البطاقة أو جواز السفر">
+                <input type="date" id="insurance-date">
+                <button type="submit">تأكيد</button>
+            </form>
+            <div id="insurance-form-message"></div>
+            <button onclick="backToBooking()">الرجوع لباقي الحجوزات</button>
+        </section>
+
+        <section id="activities" class="booking-section hidden">
+            <h2>حجز الرحلات البحرية</h2>
+            <form id="activity-form">
+                <input type="text" id="activity-from" placeholder="من">
+                <input type="text" id="activity-to" placeholder="إلى">
+                <input type="date" id="activity-date">
+                <button type="submit">حجز</button>
+            </form>
+            <div id="activity-form-message"></div>
+            <button onclick="backToBooking()">الرجوع لباقي الحجوزات</button>
+        </section>
+    </main>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.booking-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+            document.querySelector('.circle-container').style.display = 'none';
+            document.querySelectorAll('.designer-box').forEach(box => {
+                box.classList.add('hidden');
+            });
+        }
+
+        function backToBooking() {
+            document.querySelector('.circle-container').style.display = 'block';
+            document.querySelectorAll('.designer-box').forEach(box => {
+                box.classList.remove('hidden');
+            });
+        }
+
+        function handleBooking(formId, fields) {
+            const form = document.getElementById(formId);
+            const messageContainer = document.getElementById(formId + '-message');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (validateForm(fields)) {
+                    messageContainer.innerHTML = `<div class="confirmation-message">تم الحجز بنجاح!</div>`;
+                    setTimeout(() => messageContainer.innerHTML = '', 5000);
+                } else {
+                    messageContainer.innerHTML = `<div class="error-message">بياناتك غير مكتملة. يرجى ملء جميع الحقول.</div>`;
+                }
+            });
+        }
+
+        function validateForm(fields) {
+            return fields.every(field => document.getElementById(field).value.trim() !== '');
+        }
+
+        handleBooking('flight-form', ['flight-from', 'flight-to', 'flight-date']);
+        handleBooking('bus-form', ['bus-from', 'bus-to', 'bus-date']);
+        handleBooking('train-form', ['train-from', 'train-to', 'train-date']);
+        handleBooking('hotel-form', ['hotel-location', 'hotel-check-in', 'hotel-check-out']);
+        handleBooking('car-form', ['car-pickup', 'car-pickup-date', 'car-dropoff-date']);
+        handleBooking('tour-form', ['tour-location', 'tour-date']);
+        handleBooking('transfer-form', ['transfer-from', 'transfer-to', 'transfer-date']);
+        handleBooking('insurance-form', ['insurance-from', 'insurance-to', 'insurance-date']);
+        handleBooking('activity-form', ['activity-from', 'activity-to', 'activity-date']);
+    </script>
+    
+    <div class="designers">
+        <div class="designer-box">
+            <span class="designer1">Adham Hany</span>
+        </div>
+        <div class="designer-box">
+            <span class="designer2">Arsanios Medhat</span>
+        </div>
+        <div class="designer-box">
+            <span class="designer3">Ahmed EL-Laithy</span>
+        </div>
+        <div class="designer-box">
+            <span class="designer4">Ahmed Hashem</span>
+        </div>
+    </div>
+</body>
+</html>
